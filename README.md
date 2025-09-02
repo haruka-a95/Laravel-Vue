@@ -104,7 +104,7 @@ VScodeで追加しておく拡張機能
 - Vue - Official (Vue 3 と TypeScript の公式拡張機能)
 
 ### 現在のHOME画面
-![screen](../Laravel-Vue/doc/image.png)
+![screen](https://github.com/haruka-a95/Laravel-Vue/blob/main/doc/image.png)
 ボタンをクリックするとカウンターが増える仕組み
 
 - Vue インスタンスの data に counter を定義（初期値 0）
