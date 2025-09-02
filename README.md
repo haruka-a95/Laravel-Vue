@@ -76,6 +76,7 @@ docker-compose exec app npm run dev
 
 ## 7. Vue.js でのナビゲーション
 以下ドキュメントを参照してください。
+[aboutRouter.md](https://github.com/haruka-a95/Laravel-Vue/blob/main/doc/aboutRouter.md)
 
 ## APIについて (本プロジェクトでは構築していません)
 - Vueコンポーネントから`axios`を使ってデータを取得
@@ -102,31 +103,29 @@ Route::get('/products', [ProductController::class, 'index']);
 VScodeで追加しておく拡張機能
 - Vue - Official (Vue 3 と TypeScript の公式拡張機能)
 
-### 現在の画面
-![screen](../doc/image.png)
-```javascript
-<template>
-    <div class="page">
-        <h1>アクセスOK</h1>
-        <p>ボタンをクリックした回数：{{ counter }}</p>
-        <button class="btn btn-primary" @click="counter += 1">
-            click!
-        </button>
-    </div>
-</template>
+### 現在のHOME画面
+![screen](../Laravel-Vue/doc/image.png)
+ボタンをクリックするとカウンターが増える仕組み
 
-<script lang="ts">
-export default {
-    data() {
-        return {
-            counter: 0,
-        }
-    },
-}
-</script>
-```
 - Vue インスタンスの data に counter を定義（初期値 0）
 - `<p>` で {{ counter }} として表示
 - `<button>` のクリックで counter += 1 が実行される
 - Vue が counter の変化を検知
 - `<p>` の内容が自動で更新される
+```ts
+<template>
+  <div>
+    <h1>アクセスOK! HOMEへようこそ</h1>
+        <p>ボタンをクリックした回数：{{ counter }}</p>
+        <button class="btn btn-primary" @click="counter += 1">
+            click!
+        </button>
+  </div>
+</template>
+
+<script lang="ts">
+export default {
+  name: 'Home',
+};
+</script>
+```
