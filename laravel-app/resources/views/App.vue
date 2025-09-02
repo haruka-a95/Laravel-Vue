@@ -5,6 +5,7 @@
         <button class="btn btn-primary" @click="counter += 1">
             click!
         </button>
+        <p>テスト</p>
     </div>
 </template>
 
