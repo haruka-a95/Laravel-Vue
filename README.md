@@ -122,7 +122,7 @@ export default {
 </script>
 ```
 - Vue インスタンスの data に counter を定義（初期値 0）
-- <p> で {{ counter }} として表示
-- <button> のクリックで counter += 1 が実行される
+- `<p>` で {{ counter }} として表示
+- `<button>` のクリックで counter += 1 が実行される
 - Vue が counter の変化を検知
-- <p> の内容が自動で更新される
+- `<p>` の内容が自動で更新される
