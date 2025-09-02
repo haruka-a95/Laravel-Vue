@@ -75,6 +75,7 @@ docker-compose exec app npm run dev
 ```
 
 ## 7. Vue.js でのナビゲーション
+以下ドキュメントを参照してください。
 
 ## APIについて (本プロジェクトでは構築していません)
 - Vueコンポーネントから`axios`を使ってデータを取得
