@@ -74,7 +74,9 @@ docker-compose exec app npm run dev
 └── nginx.conf         Nginx 設定
 ```
 
-## 7. APIの使い方 (本プロジェクトでは構築していません)
+## 7. Vue.js でのナビゲーション
+
+## APIについて (本プロジェクトでは構築していません)
 - Vueコンポーネントから`axios`を使ってデータを取得
 まだインストールしていなければ、`npm install axios`実行
 

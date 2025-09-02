@@ -1,20 +1,23 @@
 <template>
-    <div class="page">
-        <h1>アクセスOK</h1>
-        <p>ボタンをクリックした回数：{{ counter }}</p>
-        <button class="btn btn-primary" @click="counter += 1">
-            click!
-        </button>
-        <p>テスト</p>
-    </div>
+    <!-- ナビゲーション -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <router-link class="nav-link" to="/">Home</router-link>
+            </li>
+            <li class="nav-item">
+                <router-link class="nav-link" to="/about">About</router-link>
+            </li>
+        </ul>
+    </nav>
+
+  <!-- ルートコンポーネント -->
+    <router-view></router-view>
 </template>
 
 <script lang="ts">
 export default {
-    data() {
-        return {
-            counter: 0,
-        }
-    },
-}
+  name: 'App',
+};
+
 </script>

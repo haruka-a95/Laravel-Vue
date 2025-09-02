@@ -4,5 +4,9 @@ import 'bootstrap';                         // Bootstrap JS（モーダルやド
 import 'bootstrap/dist/css/bootstrap.min.css'; // Bootstrap CSS
 import { createApp } from 'vue';
 import App from '../views/App.vue';         // メイン Vue コンポーネント
+import router from './router';              // ナビゲーション
 
-createApp(App).mount("#app");              // Vue アプリを #app にマウント
+// Appにrouterを使ってマウント
+const app = createApp(App);
+app.use(router);
+app.mount('#app');
