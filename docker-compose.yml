@@ -30,11 +30,23 @@ services:
     container_name: mysql_db
     environment:
       - "MYSQL_DATABASE=laravel"
-      # - "MYSQL_USER=root"
+      - "MYSQL_USER=root"
       - "MYSQL_PASSWORD=secret"
       - "MYSQL_ROOT_PASSWORD=secret"
     volumes:
       - mysql_data:/var/lib/mysql
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin
+    environment:
+      PMA_HOST: mysql
+      PMA_USER: root
+      PMA_PASSWORD: secret
+    ports:
+      - "8081:80"
+    depends_on:
+      - mysql
 
 volumes:
   mysql_data:

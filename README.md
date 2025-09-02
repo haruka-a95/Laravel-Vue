@@ -2,10 +2,10 @@
 Laravel 12 + Vue 3 + Bootstrap + Vite を Docker Compose + Nginx で動かす開発環境のセットアップ手順です。
 フロントエンドは Vue SPA、バックエンドは Laravel API で構成されています。
 
-## 1. リポジトリをクローン
+## 1. リポジトリをクローン & 移動
 ```bash
 git clone https://github.com/haruka-a95/Laravel-Vue.git
-cd laravel-app
+cd Laravel-Vue/laravel-app
 ```
 
 ## 2. `.env` のコピー
@@ -13,15 +13,14 @@ cd laravel-app
 cp .env.example .env
 ```
 
-## 3. Docker コンテナ起動
+## 3. Docker コンテナ構築 & 起動
 ```bash
-docker-compose build
-docker-compose up -d
+docker-compose up -d --build
 ```
 
 ## 4. コンテナ内でLaravelの初期設定
 ```bash
-docker exec -it app bash
+docker compose exec -it app bash
 
 # Composer 依存関係インストール
 composer install
@@ -45,17 +44,20 @@ npm install
 php artisan serve --host=0.0.0.0 --port=8000
 
 # VScodeターミナル右側の+ボタンからもう一つターミナルを開き、Vite dev server 起動
+cd Laravel-Vue/laravel-app/
 docker-compose exec app npm run dev
 # 画面を更新する度、ctrl + c で停止、再度npm run devする
 ```
 
 ## 5. アクセス確認
 - Laravel アプリ: http://localhost:8000
-- mySQL: http://localhost:8080:80
+- phpMyAdmin: http://localhost:8080
 
 ## 6. ディレクトリ構成
 ```css
-laravel-app/
+├ Dockerfile            Docker 設定
+├ docker-compose.yml    Docker Compose 設定
+├ laravel-app/
 ├─ app/                 Laravel コアコード（モデル・コントローラー）
 ├─ database/            マイグレーション・Seeder・Factory
 ├─ public/              公開ディレクトリ（index.php, 静的ファイル）
@@ -65,12 +67,11 @@ laravel-app/
 ├─ routes/              
 │   └─ api.php          API ルート
 ├─ storage/             ログ・キャッシュ・セッション
-├─ docker/              Dockerfile / Nginx 設定
 ├─ package.json         npm 依存・スクリプト
 ├─ vite.config.js       Vite 設定
 ├─ tsconfig.json        TypeScript 設定
 ├─ .env                 環境設定
-└─ docker-compose.yml   Docker Compose 設定
+└── nginx.conf         Nginx 設定
 ```
 
 ## 7. APIの使い方 (本プロジェクトでは構築していません)
@@ -99,7 +100,7 @@ VScodeで追加しておく拡張機能
 - Vue - Official (Vue 3 と TypeScript の公式拡張機能)
 
 ### 現在の画面
-![screen](image.png)
+![screen](../doc/image.png)
 ```javascript
 <template>
     <div class="page">
