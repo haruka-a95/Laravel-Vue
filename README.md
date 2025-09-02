@@ -78,13 +78,13 @@ docker-compose exec app npm run dev
 以下ドキュメントを参照してください。
 [aboutRouter.md](https://github.com/haruka-a95/Laravel-Vue/blob/main/doc/aboutRouter.md)
 
-## APIについて (本プロジェクトでは構築していません)
+## APIについて
+- `TodoController.php` および `api.php` を参照してください。
 - Vueコンポーネントから`axios`を使ってデータを取得
-まだインストールしていなければ、`npm install axios`実行
 
 ```javascript
 import axios from 'axios';
-
+// データ取得
 axios.get('/api/products')
   .then(res => this.products = res.data)
   .catch(err => console.error(err));
