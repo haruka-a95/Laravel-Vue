@@ -1,0 +1,128 @@
+# Vue.js と Laravel での開発環境構築
+Laravel 12 + Vue 3 + Bootstrap + Vite を Docker Compose + Nginx で動かす開発環境のセットアップ手順です。
+フロントエンドは Vue SPA、バックエンドは Laravel API で構成されています。
+
+## 1. リポジトリをクローン
+```bash
+git clone https://github.com/haruka-a95/Laravel-Vue.git
+cd laravel-app
+```
+
+## 2. `.env` のコピー
+```bash
+cp .env.example .env
+```
+
+## 3. Docker コンテナ起動
+```bash
+docker-compose build
+docker-compose up -d
+```
+
+## 4. コンテナ内でLaravelの初期設定
+```bash
+docker exec -it app bash
+
+# Composer 依存関係インストール
+composer install
+
+# アプリキー生成
+php artisan key:generate
+
+# マイグレーション作成
+php artisan migrate --seed
+
+# storage 権限設定
+chown -R www-data:www-data storage bootstrap/cache
+chmod -R 775 storage bootstrap/cache
+
+# Node.js 依存関係インストール
+npm install
+## Bootstrap 5 を使用
+## TypeScript 用の型定義もインストール済み
+
+# Laravel 開発サーバーの起動 （開発中常に起動させておく）
+php artisan serve --host=0.0.0.0 --port=8000
+
+# VScodeターミナル右側の+ボタンからもう一つターミナルを開き、Vite dev server 起動
+docker-compose exec app npm run dev
+# 画面を更新する度、ctrl + c で停止、再度npm run devする
+```
+
+## 5. アクセス確認
+- Laravel アプリ: http://localhost:8000
+- mySQL: http://localhost:8080:80
+
+## 6. ディレクトリ構成
+```css
+laravel-app/
+├─ app/                 Laravel コアコード（モデル・コントローラー）
+├─ database/            マイグレーション・Seeder・Factory
+├─ public/              公開ディレクトリ（index.php, 静的ファイル）
+├─ resources/           
+│   ├─ js/              Vue コンポーネント
+│   └─ css/             Tailwind CSS / カスタム CSS
+├─ routes/              
+│   └─ api.php          API ルート
+├─ storage/             ログ・キャッシュ・セッション
+├─ docker/              Dockerfile / Nginx 設定
+├─ package.json         npm 依存・スクリプト
+├─ vite.config.js       Vite 設定
+├─ tsconfig.json        TypeScript 設定
+├─ .env                 環境設定
+└─ docker-compose.yml   Docker Compose 設定
+```
+
+## 7. APIの使い方 (本プロジェクトでは構築していません)
+- Vueコンポーネントから`axios`を使ってデータを取得
+まだインストールしていなければ、`npm install axios`実行
+
+```javascript
+import axios from 'axios';
+
+axios.get('/api/products')
+  .then(res => this.products = res.data)
+  .catch(err => console.error(err));
+```
+- APIルートは`routes/api.php`にまとめる
+```php
+Route::get('/products', [ProductController::class, 'index']);
+```
+- コントローラーに必要な処理を実装する
+
+## 8. ポイント
+- Vue が画面表示を担うため、routes/web.php へのルートは記載しない
+- Laravel は API サーバとして動作
+
+## 9. その他
+VScodeで追加しておく拡張機能
+- Vue - Official (Vue 3 と TypeScript の公式拡張機能)
+
+### 現在の画面
+![screen](image.png)
+```javascript
+<template>
+    <div class="page">
+        <h1>アクセスOK</h1>
+        <p>ボタンをクリックした回数：{{ counter }}</p>
+        <button class="btn btn-primary" @click="counter += 1">
+            click!
+        </button>
+    </div>
+</template>
+
+<script lang="ts">
+export default {
+    data() {
+        return {
+            counter: 0,
+        }
+    },
+}
+</script>
+```
+- Vue インスタンスの data に counter を定義（初期値 0）
+- <p> で {{ counter }} として表示
+- <button> のクリックで counter += 1 が実行される
+- Vue が counter の変化を検知
+- <p> の内容が自動で更新される
