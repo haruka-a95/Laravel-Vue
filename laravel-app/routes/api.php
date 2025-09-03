@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\Api\DeskController;
+use App\Http\Controllers\Api\OrderController;
+use App\Http\Controllers\Api\OrderItemController;
 use Illuminate\Support\Facades\Route;
-
 use App\Http\Controllers\Api\TodoController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
@@ -17,3 +19,7 @@ Route::apiResource('todos', TodoController::class);
 
 Route::apiResource('products', ProductController::class);
 Route::apiResource('categories', CategoryController::class);
+Route::apiResource('desks', DeskController::class);
+Route::apiResource('orders', OrderController::class);
+Route::apiResource('order-items', OrderItemController::class);
+Route::get('orders/{deskId}/items', [OrderController::class, 'items']);

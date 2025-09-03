@@ -17,6 +17,12 @@
             <li class="nav-item">
                 <router-link class="nav-link" to="/category">カテゴリ管理</router-link>
             </li>
+            <li class="nav-item">
+                <router-link class="nav-link" to="/desk">テーブル管理</router-link>
+            </li>
+            <li class="nav-item">
+                <router-link class="nav-link" to="/desk-list">テーブル選択</router-link>
+            </li>
         </ul>
     </nav>
 
