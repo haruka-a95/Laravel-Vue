@@ -51,7 +51,7 @@ docker-compose exec app npm run dev
 
 ## 5. アクセス確認
 - Laravel アプリ: http://localhost:8000
-- phpMyAdmin: http://localhost:8080
+- phpMyAdmin: http://localhost:8081
 
 ## 6. ディレクトリ構成
 ```css

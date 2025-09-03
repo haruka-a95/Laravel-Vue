@@ -29,10 +29,8 @@ services:
     image: mysql:5.7
     container_name: mysql_db
     environment:
-      - "MYSQL_DATABASE=laravel"
-      - "MYSQL_USER=root"
-      - "MYSQL_PASSWORD=secret"
-      - "MYSQL_ROOT_PASSWORD=secret"
+      - MYSQL_DATABASE=laravel
+      - MYSQL_ROOT_PASSWORD=secret
     volumes:
       - mysql_data:/var/lib/mysql
 
