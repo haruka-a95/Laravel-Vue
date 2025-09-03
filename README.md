@@ -1,6 +1,11 @@
 # Vue.js と Laravel での開発環境構築
 Laravel 12 + Vue 3 + Bootstrap + Vite を Docker Compose + Nginx で動かす開発環境のセットアップ手順です。
+
+
 フロントエンドは Vue SPA、バックエンドは Laravel API で構成されています。
+
+
+Dockerを立ち上げておいてください。
 
 ## 1. リポジトリをクローン & 移動
 ```bash
@@ -78,7 +83,7 @@ docker-compose exec app npm run dev
 以下ドキュメントを参照してください。
 [aboutRouter.md](https://github.com/haruka-a95/Laravel-Vue/blob/main/doc/aboutRouter.md)
 
-## APIについて
+## 8. APIについて
 - `TodoController.php` および `api.php` を参照してください。
 - Vueコンポーネントから`axios`を使ってデータを取得
 
@@ -95,16 +100,19 @@ Route::get('/products', [ProductController::class, 'index']);
 ```
 - コントローラーに必要な処理を実装する
 
-## 8. ポイント
+## 9. ポイント
 - Vue が画面表示を担うため、routes/web.php へのルートは記載しない
 - Laravel は API サーバとして動作
 
-## 9. その他
-VScodeで追加しておく拡張機能
+## 10. その他
+### VScodeで追加しておく拡張機能
 - Vue - Official (Vue 3 と TypeScript の公式拡張機能)
 
 ### 現在のHOME画面
-![screen](../Laravel-Vue/doc/image.png)
+Vue.jsでの状態管理
+![screen](https://github.com/haruka-a95/Laravel-Vue/blob/main/doc/image.png)
+
+
 ボタンをクリックするとカウンターが増える仕組み
 
 - Vue インスタンスの data に counter を定義（初期値 0）
