@@ -11,6 +11,12 @@
             <li class="nav-item">
                 <router-link class="nav-link" to="/todo">Todo</router-link>
             </li>
+            <li class="nav-item">
+                <router-link class="nav-link" to="/product">商品管理</router-link>
+            </li>
+            <li class="nav-item">
+                <router-link class="nav-link" to="/category">カテゴリ管理</router-link>
+            </li>
         </ul>
     </nav>
 

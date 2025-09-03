@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Api\TodoController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ProductController;
 
 Route::apiResource('todos', TodoController::class);
 // apiResourceを使用することで自動で CRUD の API エンドポイントを作成
@@ -12,3 +14,6 @@ Route::apiResource('todos', TodoController::class);
 //   詳細取得   GET    /api/todos/{id}
 //   更新       PUT    /api/todos/{id}
 //   削除       DELETE /api/todos/{id}
+
+Route::apiResource('products', ProductController::class);
+Route::apiResource('categories', CategoryController::class);
